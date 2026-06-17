@@ -18,6 +18,6 @@ jobs:
 
       - uses: czl9707/gh-space-shooter@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ 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 }}
           output-path: 'game.webp'
           strategy: 'random'
