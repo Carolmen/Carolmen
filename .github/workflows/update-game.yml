@@ -1,0 +1,23 @@
+name: Update Space Shooter Game
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 每天午夜 UTC 自动运行
+  workflow_dispatch:  # 允许在 Actions 页面手动触发执行
+
+permissions:
+  contents: write
+
+jobs:
+  update-game:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 2  # 必须包含此项，以便让 Action 正常判断和修改上一次的提交，防止仓库体积膨胀
+
+      - uses: czl9707/gh-space-shooter@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          output-path: 'game.webp'
+          strategy: 'random'
